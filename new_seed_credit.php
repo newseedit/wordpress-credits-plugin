@@ -8,7 +8,6 @@
  * Author URI: http://www.aydin.cf/plugins/
  * License: GPLv2
  */
-
 /* Start Adding Functions Below this Line */
 
 // Creating the widget
