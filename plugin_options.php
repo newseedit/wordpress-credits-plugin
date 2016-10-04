@@ -7,8 +7,8 @@ function nsc_create_page() {
     wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
   }
   include_once 'nsc_update.php';
-echo '<form method="post" action=" '. str_replace( '%7E', '~', $_SERVER['REQUEST_URI']) .'">';
-echo "<table>";
+echo '<form method="post" class="nsc-admin-form" action=" '. str_replace( '%7E', '~', $_SERVER['REQUEST_URI']) .'">';
+echo "<table>" . "<h2>NSC Settings</h2>";
 
 if ( ! function_exists( 'get_plugins' ) ) {
       require_once ABSPATH . 'wp-admin/includes/plugin.php';
@@ -22,24 +22,23 @@ if ( ! function_exists( 'get_plugins' ) ) {
         $checked = 'checked';
       }
       echo "<tr><td>";
-      echo '<b style >Name:</b>' . ' ' . $plugin['Name'];
+      echo '<div class="nsc-plugin-name-admin">' . ' ' . $plugin['Name'];
       echo '</br>';
-      echo '<b>URL:</b>' . ' ' . $plugin['PluginURI'];
+      echo '<div class="nsc-plugin-url-admin">' . ' ' . $plugin['PluginURI'];
       echo '</br>';
-      echo '<b>Version</b>' . ' ' . $plugin['Version'];
+      echo '<div class="nsc-plugin-version-admin">' . ' ' . $plugin['Version'];
       echo '</br></td><td>';
-      echo '<input class="widefat" id="plugin'.$i.'" name="plugin'.$i.'" type="checkbox" value= "'.$plugin['Name'].'" '. $checked .' />';
+      echo '<input class="nsc-widefat-admin" id="plugin'.$i.'" name="plugin'.$i.'" type="checkbox" value= "'.$plugin['Name'].'" '. $checked .' />';
       echo "</td></tr>";
       $i++;
     }
 echo "</table>";
 ?>
-    <p class="submit">
+    <p class="nsc-submit">
     <input type="hidden" name="nsc_hidden" value="Y">
-      <input type="submit" name="Submit" value="<?php _e('Save Options', '' ) ?>" />
+      <input type="submit" class="nsc-save-btn" name="Submit" value="<?php _e('Save Options', '' ) ?>" />
     </p>
-    <a class="powered-by" target="_blank" href="http://newseed.se"/>powered by New Seed</a>
-
-    </form>
+    <a class="nsc-powered-by" target="_blank" href="http://newseed.se"/>powered by New Seed</a>
+  </form>
 <hr>
 <?php }

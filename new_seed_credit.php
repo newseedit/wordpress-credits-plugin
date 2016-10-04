@@ -26,10 +26,11 @@ function nsc_admin_page() {
 
   add_menu_page ( 'New Seed Settings', 'New Seed', 'manage_options', 'nsc_admin_menu', 'nsc_create_page', plugins_url ('new_seed/img/png_new.png'), 6 );
   add_submenu_page ( 'nsc_admin_menu', 'New Seed Settings', 'Settings', 'manage_options', 'nsc_admin_menu', 'nsc_create_page' );
-  add_submenu_page ( 'nsc_admin_menu', 'New Seed Features', 'Features', 'manage_options', 'nsc_admin_menu_fordon', 'nsc_settings_page' );
+  add_submenu_page ( 'nsc_admin_menu', 'New Seed Features', '', 'manage_options', 'nsc_admin_menu_fordon', 'nsc_settings_page' );
 }
 add_action( 'admin_menu', 'nsc_admin_page');
 add_shortcode( 'newseed', 'displayPluginContent' );
+  //Plugin on the fronpage starts here.
    function displayPluginContent() {
     // Check if get_plugins() function exists. This is required on the front end of the
     // site, since it is in a file that is normally only loaded in the admin.
@@ -41,11 +42,11 @@ add_shortcode( 'newseed', 'displayPluginContent' );
     foreach ($plugins as $plugin){
       if(get_option('plugin'.$i) != null){
         //$plugin = get_option('plugin'.$i);
-        echo '<div class="plugin-name">' . ' ' . $plugin['Name'] . '</div>';
-        echo $plugin['PluginURI'];
+        echo '<div class="nsc-plugin-name">' . ' ' . $plugin['Name'] . '</div>';
+        echo '<div class="nsc-plugin-uri">' . ' ' .$plugin['PluginURI'];
         echo '</br>';
-        echo '<b>Version</b>' . ' ' . $plugin['Version'];
-        echo '</br>' . '</br>';
+        echo '<div class="nsc-plugin-version">' . ' ' . $plugin['Version'];
+        //echo '</br>' . '</br>';
       }
       $i++;
     }
@@ -83,7 +84,7 @@ add_shortcode( 'newseed', 'displayPluginContent' );
     echo $args['after_widget'];
   }
 
-  // Widget Backend
+  // Widget on the sidebar starts here
   public function displayContent( $instance ) {
     // Check if get_plugins() function exists. This is required on the front end of the
     // site, since it is in a file that is normally only loaded in the admin.
@@ -107,7 +108,6 @@ add_shortcode( 'newseed', 'displayPluginContent' );
       $i++;
     }
   }
-
   public function form( $instance ) {
     $plugins = get_plugins();
     $i = 0;
@@ -118,11 +118,11 @@ add_shortcode( 'newseed', 'displayPluginContent' );
       if(isset($instance['plugin'.$i])){
         $checked = 'checked';
       }
-      //This part is the Widget
+      //This part is the Widget in the Sidebar
       echo "<tr><td>";
-      echo '<div id="namn">Name:</div>' . ' ' . $plugin['Name'];
+      echo $plugin['Name'];
       echo '</br>';
-      echo '<b style >URL:</b>' . ' ' . $plugin['PluginURI'];
+      echo '<div id="nsc-url">URL:</b>' . ' ' . $plugin['PluginURI'];
       echo '</br>';
       echo '<b>Version</b>' . ' ' . $plugin['Version'];
       echo '</br></td><td>';
@@ -143,8 +143,8 @@ add_shortcode( 'newseed', 'displayPluginContent' );
     // Widget admin form
     ?>
     <p>
-      <label class="the-title"form="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
-      <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
+      <label class="nsc-the-title"form="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+      <input class="nsc-widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
       <?php
     }
 
