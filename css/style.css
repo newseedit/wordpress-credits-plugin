@@ -1,0 +1,54 @@
+b, strong {
+  color: #599cb7;
+}
+
+.widget {
+  color: #2d2d2d;
+}
+
+h2. {
+  color: #4da4e6;
+  width: 300px;
+}
+
+.widget-content {
+  background: red;
+}
+
+
+#wpb_widget-2 {
+  background: #f9f9f9;
+  margin: auto;
+  width: 300px;
+  height: auto;
+  padding-top: 30px;
+  font-family: helvetica, arial, sans-serif;
+}
+
+.widget-title {
+  background: #e3e3e3;
+  background: -moz-linear-gradient(top, #e3e3e3, #5fc3f7);
+  background: -webkit-gradient(linear, left top, left bottom, from(#e3e3e3), to(#5fc3f7));
+  padding: 10px 20px;
+  margin-left: -20px;
+  margin-top: 0;
+  position: relative;
+  width: 70%;
+  -moz-box-shadow: 1px 1px 3px #292929;
+  -webkit-box-shadow: 1px 1px 3px #292929;
+  box-shadow: 1px 1px 3px #292929;
+  color: #454545;
+  text-shadow: 0 1px 0 white;
+}
+
+
+.widget .widget-title {
+ background: #f9f9f9;
+  transition-property: background;
+  transition-duration: 1s;
+  transition-timing-function: linear;
+}
+
+.widget .widget-title:hover {
+  background: #ff7b29;
+}
