@@ -1,1 +1,6 @@
-style.css
+/* Css Style For The Plugin in Page */
+
+.plugin-name {
+  color:red;
+  font-weight: 800;
+}

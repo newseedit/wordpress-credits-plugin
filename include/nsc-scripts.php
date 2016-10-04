@@ -1,6 +1,5 @@
 <?php
 // Add Scripts
-function nsc_scripts() {
-  wp_enque_style('style',plugins_url() . '/movielist/css/style.css');
-}
-add_action('wp_enque_scripts', 'nsc_add_scripts');
+  wp_enqueue_style('style',plugins_url() . '/new_seed/css/style.css');
+  wp_enqueue_style('style',plugins_url() . '/new_seed/css/nsc-admin-style.css');
+  wp_enqueue_style('style',plugins_url() . '/new_seed/css/nsc-plugin.css');

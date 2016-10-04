@@ -23,6 +23,7 @@ GNU General Public License for more details.
 /* Start Adding Functions Below this Line */
 function nsc_admin_page() {
   include_once 'plugin_options.php';
+
   add_menu_page ( 'New Seed Settings', 'New Seed', 'manage_options', 'nsc_admin_menu', 'nsc_create_page', plugins_url ('new_seed/img/png_new.png'), 6 );
   add_submenu_page ( 'nsc_admin_menu', 'New Seed Settings', 'Settings', 'manage_options', 'nsc_admin_menu', 'nsc_create_page' );
   add_submenu_page ( 'nsc_admin_menu', 'New Seed Features', 'Features', 'manage_options', 'nsc_admin_menu_fordon', 'nsc_settings_page' );
@@ -40,9 +41,8 @@ add_shortcode( 'newseed', 'displayPluginContent' );
     foreach ($plugins as $plugin){
       if(get_option('plugin'.$i) != null){
         //$plugin = get_option('plugin'.$i);
-        echo '<b>Name:</b>' . ' ' . $plugin['Name'];
-        echo '</br>';
-        echo '<b>URL:</b>' . ' ' . $plugin['PluginURI'];
+        echo '<div class="plugin-name">' . ' ' . $plugin['Name'] . '</div>';
+        echo $plugin['PluginURI'];
         echo '</br>';
         echo '<b>Version</b>' . ' ' . $plugin['Version'];
         echo '</br>' . '</br>';
@@ -96,11 +96,12 @@ add_shortcode( 'newseed', 'displayPluginContent' );
       if(isset($instance['plugin'.$i])){
         $plugin = $instance['plugin'.$i];
         $checked = 'checked';
-        echo '<b>Name:</b>' . ' ' . $plugin['Name'];
+
+        echo  $plugin['Name'];
         echo '</br>';
-        echo '<b>URL:</b>' . ' <a href="' .$plugin['PluginURI'] . '">'.$plugin['PluginURI'].'</a>';
+        echo ' <a href="' .$plugin['PluginURI'] . '">'.$plugin['PluginURI'].'</a>';
         echo '</br>';
-        echo '<b>Version</b>' . ' ' . $plugin['Version'];
+        echo $plugin['Version'];
         echo '</br>' . '</br>';
       }
       $i++;
@@ -117,10 +118,11 @@ add_shortcode( 'newseed', 'displayPluginContent' );
       if(isset($instance['plugin'.$i])){
         $checked = 'checked';
       }
+      //This part is the Widget
       echo "<tr><td>";
-      echo '<b style >Name:</b>' . ' ' . $plugin['Name'];
+      echo '<div id="namn">Name:</div>' . ' ' . $plugin['Name'];
       echo '</br>';
-      echo '<b>URL:</b>' . ' ' . $plugin['PluginURI'];
+      echo '<b style >URL:</b>' . ' ' . $plugin['PluginURI'];
       echo '</br>';
       echo '<b>Version</b>' . ' ' . $plugin['Version'];
       echo '</br></td><td>';
@@ -168,6 +170,8 @@ add_shortcode( 'newseed', 'displayPluginContent' );
   // Register and load the widget
   function wpb_load_widget() {
     register_widget( 'wpb_widget' );
+          include_once(plugin_dir_path(__FILE__) . '/include/nsc-scripts.php');
+
    // wp_enqueue_style( 'style', plugins_url( 'css/style.css', __FILE__ ), false, 'v1', $media = 'all' );
   }
   add_action( 'widgets_init', 'wpb_load_widget' );
