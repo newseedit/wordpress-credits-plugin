@@ -38,15 +38,11 @@ GNU General Public License for more details.
 // }
 add_action('admin_menu', 'nsc_admin_meny');
 function nsc_admin_meny() {
-  add_options_page ('New Seed Credit Settings','New Seed Credit', 'manage_options','new-seed-credit', 'new_seed_credit_options');
+    include_once 'plugin_options.php';
+
+  add_options_page ('New Seed Credit Settings','New Seed Credit', 'manage_options','new-seed-credit', 'nsc_create_page');
 }
 
-function new_seed_credit_options() {
-  if (!current_user_can('manage_options')) {
-    wp_die( 'You do not have sufficient permission to access this page.');
-  }
-  echo '<p>This is the option menu for New Seed Credits</p>';
-}
 
 
 // function nsc_admin_page() {
@@ -128,7 +124,7 @@ add_shortcode( 'newseed', 'displayPluginContent' );
 
         echo  $plugin['Name'];
         echo '</br>';
-        echo ' <a href="' .$plugin['PluginURI'] . '"rel="nofollow">'.$plugin['PluginURI'].'</a>';
+        echo ' <a href="' .$plugin['PluginURI'] . '" rel="nofollow">'.$plugin['PluginURI'].'</a>';
         echo '</br>';
         echo $plugin['Version'];
         echo '</br>' . '</br>';
