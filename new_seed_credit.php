@@ -1,7 +1,7 @@
 <?php
 /*
 * Plugin Name: NewSeed Credit Widget
-* Description: Show the other plugins you are using on your wordpress site or blogg.
+* Description: Show the plugins you are using on your wordpress site or blogg.
 * Plugin URI: http://newseed.se/
 * Version: 1.0
 * Author: Aydin Nalbantov
@@ -14,7 +14,7 @@
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
 as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
+of the License, or any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
