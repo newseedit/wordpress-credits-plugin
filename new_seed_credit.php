@@ -21,14 +21,33 @@ GNU General Public License for more details.
 */
 
 /* Start Adding Functions Below this Line */
-function nsc_admin_page() {
-  include_once 'plugin_options.php';
-
-  add_menu_page ( 'New Seed Settings', 'New Seed', 'manage_options', 'nsc_admin_menu', 'nsc_create_page', plugins_url ('new_seed/img/png_new.png'), 6 );
-  add_submenu_page ( 'nsc_admin_menu', 'New Seed Settings', 'Settings', 'manage_options', 'nsc_admin_menu', 'nsc_create_page' );
-  //add_submenu_page ( 'nsc_admin_menu', 'New Seed Features', '', 'manage_options', 'nsc_admin_menu_fordon', 'nsc_settings_page' );
+function nsc_settings() {
+  add_settings_section (
+    'nsc_setting_section',
+    'New Seed Settings',
+    'nsc_setting_section_callback',
+    'reading'
+  );
 }
-add_action( 'admin_menu', 'nsc_admin_page');
+
+add_action('admin_init', 'nsc_settings');
+
+function nsc_setting_section_callback() {
+    echo '<p>Settings for the New Seed Credit plugin</p>';
+    echo '<p>To activate the shortcode for the plugin, just enter the following [newseed] in the page you want the plugin to appear</p>';
+}
+
+
+
+
+// function nsc_admin_page() {
+//   include_once 'plugin_options.php';
+
+//   add_menu_page ( 'New Seed Settings', 'New Seed', 'manage_options', 'nsc_admin_menu', 'nsc_create_page', plugins_url ('new_seed/img/png_new.png'), 6 );
+//   add_submenu_page ( 'nsc_admin_menu', 'New Seed Settings', 'Settings', 'manage_options', 'nsc_admin_menu', 'nsc_create_page' );
+//   add_submenu_page ( 'nsc_admin_menu', 'New Seed Features', '', 'manage_options', 'nsc_admin_menu_fordon', 'nsc_settings_page' );
+// }
+//add_action( 'admin_menu', 'nsc_admin_page');
 add_shortcode( 'newseed', 'displayPluginContent' );
   //Plugin on the fronpage starts here.
    function displayPluginContent() {
@@ -100,7 +119,7 @@ add_shortcode( 'newseed', 'displayPluginContent' );
 
         echo  $plugin['Name'];
         echo '</br>';
-        echo ' <a href="' .$plugin['PluginURI'] . '">'.$plugin['PluginURI'].'</a>';
+        echo ' <a href="' .$plugin['PluginURI'] . '" rel="nofollow">'.$plugin['PluginURI'].'</a>';
         echo '</br>';
         echo $plugin['Version'];
         echo '</br>' . '</br>';
