@@ -13,6 +13,12 @@
     background-size: 260px 120px;
     background-origin: border-box;
 }
+
+.nsc-widget-name {
+  color: forestgreen;
+  font-weight: 800;
+
+}
 /* Css Style For The New Seed Credit Plugin in Frontpage Ends here */
 
 

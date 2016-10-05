@@ -40,9 +40,11 @@ add_shortcode( 'newseed', 'displayPluginContent' );
     foreach ($plugins as $plugin){
       if(get_option('plugin'.$i) != null){
         echo '<div class="nsc-plugin-name">' . ' ' . $plugin['Name'] . '</div>';
-        echo '<div class="nsc-plugin-uri">' . ' ' .$plugin['PluginURI'];
         echo '</br>';
-        echo '<div class="nsc-plugin-version">' . ' ' . $plugin['Version'];
+        echo '<div class="nsc-plugin-desc">' . ' ' . $plugin['Description'] . '</div>';
+        echo '<div class="nsc-plugin-uri">' . ' ' .$plugin['PluginURI'] . '</div>';
+        echo '<div class="nsc-plugin-version">' . ' ' . $plugin['Version'] . '</div>';
+        echo '</br>';
       }
       $i++;
     }
@@ -87,7 +89,9 @@ add_shortcode( 'newseed', 'displayPluginContent' );
         $plugin = $instance['plugin'.$i];
         $checked = 'checked';
 
-        echo  $plugin['Name'];
+        echo '<div class="nsc-widget-name">' . ' ' . $plugin['Name'] . '</div>';
+        echo '</br>';
+        echo $plugin['Description'];
         echo '</br>';
         echo ' <a href="' .$plugin['PluginURI'] . '" rel="nofollow">'.$plugin['PluginURI'].'</a>';
         echo '</br>';
