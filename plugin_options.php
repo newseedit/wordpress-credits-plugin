@@ -8,7 +8,7 @@ function nsc_create_page() {
   }
   include_once 'nsc_update.php';
 echo '<form method="post" class="nsc-admin-form" action=" '. str_replace( '%7E', '~', $_SERVER['REQUEST_URI']) .'">';
-echo "<table>" . "<h2>NewSeedCredit Settings</h2>";
+echo "<table>" . "<h2>NewSeed Credit Settings</h2>";
 
 if ( ! function_exists( 'get_plugins' ) ) {
       require_once ABSPATH . 'wp-admin/includes/plugin.php';
