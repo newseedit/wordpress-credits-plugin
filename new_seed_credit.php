@@ -24,7 +24,7 @@ GNU General Public License for more details.
 function nsc_settings() {
   add_settings_section (
     'nsc_setting_section',
-    'New Seed Settings',
+    'New Seed Credit Settings',
     'nsc_setting_section_callback',
     'reading'
   );
@@ -40,14 +40,14 @@ function nsc_setting_section_callback() {
 
 
 
-// function nsc_admin_page() {
-//   include_once 'plugin_options.php';
+function nsc_admin_page() {
+  include_once 'plugin_options.php';
 
-//   add_menu_page ( 'New Seed Settings', 'New Seed', 'manage_options', 'nsc_admin_menu', 'nsc_create_page', plugins_url ('new_seed/img/png_new.png'), 6 );
-//   add_submenu_page ( 'nsc_admin_menu', 'New Seed Settings', 'Settings', 'manage_options', 'nsc_admin_menu', 'nsc_create_page' );
-//   add_submenu_page ( 'nsc_admin_menu', 'New Seed Features', '', 'manage_options', 'nsc_admin_menu_fordon', 'nsc_settings_page' );
-// }
-//add_action( 'admin_menu', 'nsc_admin_page');
+  add_menu_page ( 'New Seed Settings', 'New Seed', 'manage_options', 'nsc_admin_menu', 'nsc_create_page', plugins_url ('new_seed/img/png_new.png'), 6 );
+  add_submenu_page ( 'nsc_admin_menu', 'New Seed Settings', 'Settings', 'manage_options', 'nsc_admin_menu', 'nsc_create_page' );
+  add_submenu_page ( 'nsc_admin_menu', 'New Seed Features', '', 'manage_options', 'nsc_admin_menu_fordon', 'nsc_settings_page' );
+}
+add_action( 'admin_menu', 'nsc_admin_page');
 add_shortcode( 'newseed', 'displayPluginContent' );
   //Plugin on the fronpage starts here.
    function displayPluginContent() {
@@ -119,7 +119,7 @@ add_shortcode( 'newseed', 'displayPluginContent' );
 
         echo  $plugin['Name'];
         echo '</br>';
-        echo ' <a href="' .$plugin['PluginURI'] . '" rel="nofollow">'.$plugin['PluginURI'].'</a>';
+        echo ' <a href="' .$plugin['PluginURI'] . '"rel="nofollow">'.$plugin['PluginURI'].'</a>';
         echo '</br>';
         echo $plugin['Version'];
         echo '</br>' . '</br>';
