@@ -12,12 +12,10 @@
         $i++;
       }
         //Form data sent
-
         ?>
         <div class="updated"><p><strong><?php _e('Options saved.' ); ?></strong></p></div>
         <?php
     } else {
         //Normal page display
-
     }
 ?>

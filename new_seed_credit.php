@@ -6,8 +6,10 @@
 * Version: 1.0
 * Author: Aydin Nalbantov
 * Author URI: http://www.aydin.cf/plugins/
+* Many thanks to Magnus Nilsson and Emmely Lundberg from NewSeed IT Solutions
+* who helped me all the time while I was developing this plugin.
+* A big thanks to Magnus Lindgren from NewSeed IT Solutions who gave me an internship and the time to teach me programming.
 * License: GPLv2 or later
-
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -20,22 +22,6 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 */
 
-/* Start Adding Functions Below this Line */
-// function nsc_settings() {
-//   add_settings_section (
-//     'nsc_setting_section',
-//     'New Seed Credit Settings',
-//     'nsc_setting_section_callback',
-//     'reading'
-//   );
-// }
-
-// add_action('admin_init', 'nsc_settings');
-
-// function nsc_setting_section_callback() {
-//     echo '<p>Settings for the New Seed Credit plugin</p>';
-//     echo '<p>To activate the shortcode for the plugin, just enter the following [newseed] in the page you want the plugin to appear</p>';
-// }
 add_action('admin_menu', 'nsc_admin_meny');
 function nsc_admin_meny() {
     include_once 'plugin_options.php';
@@ -43,21 +29,9 @@ function nsc_admin_meny() {
   add_options_page ('New Seed Credit Settings','New Seed Credit', 'manage_options','new-seed-credit', 'nsc_create_page');
 }
 
-
-
-// function nsc_admin_page() {
-//   include_once 'plugin_options.php';
-
-//   add_menu_page ( 'New Seed Settings', 'New Seed Credit', 'manage_options', 'nsc_admin_menu', 'nsc_create_page', plugins_url ('new_seed/img/png_new.png'), 6 );
-//   add_submenu_page ( 'nsc_admin_menu', 'New Seed Settings', 'Settings', 'manage_options', 'nsc_admin_menu', 'nsc_create_page' );
-//   add_submenu_page ( 'nsc_admin_menu', 'New Seed Features', '', 'manage_options', 'nsc_admin_menu_fordon', 'nsc_settings_page' );
-// }
-// add_action( 'admin_menu', 'nsc_admin_page');
 add_shortcode( 'newseed', 'displayPluginContent' );
-  //Plugin on the fronpage starts here.
    function displayPluginContent() {
-    // Check if get_plugins() function exists. This is required on the front end of the
-    // site, since it is in a file that is normally only loaded in the admin.
+
     if ( ! function_exists( 'get_plugins' ) ) {
       require_once ABSPATH . 'wp-admin/includes/plugin.php';
     }
@@ -65,17 +39,15 @@ add_shortcode( 'newseed', 'displayPluginContent' );
     $i = 0;
     foreach ($plugins as $plugin){
       if(get_option('plugin'.$i) != null){
-        //$plugin = get_option('plugin'.$i);
         echo '<div class="nsc-plugin-name">' . ' ' . $plugin['Name'] . '</div>';
         echo '<div class="nsc-plugin-uri">' . ' ' .$plugin['PluginURI'];
         echo '</br>';
         echo '<div class="nsc-plugin-version">' . ' ' . $plugin['Version'];
-        //echo '</br>' . '</br>';
       }
       $i++;
     }
   }
-  // Creating the widget
+
   if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
   class wpb_widget extends WP_Widget {
 
@@ -92,26 +64,19 @@ add_shortcode( 'newseed', 'displayPluginContent' );
     );
   }
 
-  // Creating widget front-end
-  // This is where the action happens
   public function widget( $args, $instance ) {
     $title = apply_filters( 'widget_title', $instance['title'] );
-    // before and after widget arguments are defined by themes
     echo $args['before_widget'];
     if ( ! empty( $title ) ){
       echo $args['before_title'] . $title . $args['after_title'];
     }
 
-    // This is where the code runs and displays the output
-    //echo __( 'Hello, World!', 'wpb_widget_domain', 'Name', 'PluginURI', 'Version'  );
     $this->displayContent( $instance);
     echo $args['after_widget'];
   }
 
-  // Widget on the sidebar starts here
   public function displayContent( $instance ) {
-    // Check if get_plugins() function exists. This is required on the front end of the
-    // site, since it is in a file that is normally only loaded in the admin.
+
     if ( ! function_exists( 'get_plugins' ) ) {
       require_once ABSPATH . 'wp-admin/includes/plugin.php';
     }
@@ -142,7 +107,7 @@ add_shortcode( 'newseed', 'displayPluginContent' );
       if(isset($instance['plugin'.$i])){
         $checked = 'checked';
       }
-      //This part is the Widget in the Sidebar
+
       echo "<tr><td>";
       echo $plugin['Name'];
       echo '</br>';
@@ -163,8 +128,6 @@ add_shortcode( 'newseed', 'displayPluginContent' );
       $title = __( 'New title', 'wpb_widget_domain' );
       $checkbox = '';
     }
-
-    // Widget admin form
     ?>
     <p>
       <label class="nsc-the-title"form="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
@@ -189,14 +152,12 @@ add_shortcode( 'newseed', 'displayPluginContent' );
       $instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
       return $instance;
     }
-  } // Class wpb_widget ends here
+  }
 
   // Register and load the widget
   function wpb_load_widget() {
     register_widget( 'wpb_widget' );
           include_once(plugin_dir_path(__FILE__) . '/include/nsc-scripts.php');
-
-   // wp_enqueue_style( 'style', plugins_url( 'css/style.css', __FILE__ ), false, 'v1', $media = 'all' );
   }
   add_action( 'widgets_init', 'wpb_load_widget' );
   /* Stop Adding Functions Below this Line */

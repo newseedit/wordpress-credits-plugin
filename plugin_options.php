@@ -1,7 +1,6 @@
 <?php
 
 function nsc_create_page() {
-//include('nsc_admin_page.php');
 
   if ( !current_user_can( 'manage_options' ) ) {
     wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
