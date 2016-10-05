@@ -63,4 +63,8 @@
   transform: translateY(4px);
 }
 
+#wpcontent {
+  padding: 5px;
+}
+
 /* Css Style For The New Seed Credit Plugin in the Admin Settings Ends here */

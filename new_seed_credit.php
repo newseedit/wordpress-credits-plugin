@@ -26,7 +26,7 @@ function nsc_admin_page() {
 
   add_menu_page ( 'New Seed Settings', 'New Seed', 'manage_options', 'nsc_admin_menu', 'nsc_create_page', plugins_url ('new_seed/img/png_new.png'), 6 );
   add_submenu_page ( 'nsc_admin_menu', 'New Seed Settings', 'Settings', 'manage_options', 'nsc_admin_menu', 'nsc_create_page' );
-  add_submenu_page ( 'nsc_admin_menu', 'New Seed Features', '', 'manage_options', 'nsc_admin_menu_fordon', 'nsc_settings_page' );
+  //add_submenu_page ( 'nsc_admin_menu', 'New Seed Features', '', 'manage_options', 'nsc_admin_menu_fordon', 'nsc_settings_page' );
 }
 add_action( 'admin_menu', 'nsc_admin_page');
 add_shortcode( 'newseed', 'displayPluginContent' );
