@@ -22,7 +22,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 */
 
-include_once 'install.php';
+include_once 'nsc_install.php';
 
 add_action('admin_menu', 'nsc_admin_meny');
 function nsc_admin_meny() {
