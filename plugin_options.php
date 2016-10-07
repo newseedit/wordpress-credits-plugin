@@ -7,7 +7,29 @@ function nsc_create_page() {
   if ( !current_user_can( 'manage_options' ) ) {
     wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
   }
-  include_once 'nsc_update.php';
+
+  /* if it is a post to this page */
+  if(isset($_POST['nsc_hidden'])) {
+    $plugins = get_plugins();
+    $i = 0;
+    foreach ($plugins as $plugin){
+      if(isset($_POST['plugin'.$i])){
+        $nsc_plugin = $_POST['plugin'.$i];
+        update_option('plugin'.$i, $nsc_plugin);
+      } else {
+        delete_option('plugin'.$i);
+      }
+      $i++;
+    }
+      //Form data sent
+      ?>
+      <div class="updated"><p><strong><?php _e('Options saved.' ); ?></strong></p></div>
+      <?php
+  } else {
+      //Normal page display
+  }
+
+
 echo '<form method="post" class="nsc-admin-form" action=" '. str_replace( '%7E', '~', $_SERVER['REQUEST_URI']) .'">';
 echo "<table>" . "<h2>NewSeed Credit Settings</h2>";
 
