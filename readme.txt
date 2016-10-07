@@ -23,3 +23,22 @@ Use Add Plugin within the WordPress Admin panel to download and install this jNe
 Activate the New Seed Credit plugin through the Installed Plugins Admin panel in WordPress.
 You can find the settings fro the plugin your WordPress admin area and click on Settings » New Seed Credit.
 That\'s it, you have now successfully installed New Seed Credit plugin, we hope you like it.
+
+== Screenshots ==
+
+1. This is an example of the short code on the front-end.
+
+2. This is an example of the widget on the front-end.
+
+3. Examples of the widget settings.
+
+4. Examples of plugin settings.
+
+
+== Donation ==
+
+It's free, enjoy
+
+== Upgrade Notice ==
+
+This is the first release, definitely worth installing.
