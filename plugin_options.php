@@ -8,23 +8,26 @@ function nsc_create_page() {
     wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
   }
 
+  $plugins = get_plugins();
+  $settings = get_option('nsc_settings');
+
   /* if it is a post to this page */
-  if(isset($_POST['nsc_hidden'])) {
-    $plugins = get_plugins();
+  if ( isset( $_POST['nsc_hidden'] ) ) {
     $i = 0;
     foreach ($plugins as $plugin){
-      if(isset($_POST['plugin'.$i])){
-        $nsc_plugin = $_POST['plugin'.$i];
-        update_option('plugin'.$i, $nsc_plugin);
-      } else {
-        delete_option('plugin'.$i);
+      if ( isset( $_POST['plugin_'.$i] ) ) {
+        $settings['plugin_'.$i] = true;
+      }
+      else {
+        unset( $settings['plugin_'.$i] );
       }
       $i++;
     }
-      //Form data sent
-      ?>
-      <div class="updated"><p><strong><?php _e('Options saved.' ); ?></strong></p></div>
-      <?php
+    update_option('nsc_settings',$settings);
+    //Form data sent
+    ?>
+    <div class="updated"><p><strong><?php _e('Options saved.' ); ?></strong></p></div>
+    <?php
   } else {
       //Normal page display
   }
@@ -33,15 +36,15 @@ function nsc_create_page() {
 echo '<form method="post" class="nsc-admin-form" action=" '. str_replace( '%7E', '~', $_SERVER['REQUEST_URI']) .'">';
 echo "<table>" . "<h2>NewSeed Credit Settings</h2>";
 
+
 if ( ! function_exists( 'get_plugins' ) ) {
       require_once ABSPATH . 'wp-admin/includes/plugin.php';
     }
-    $plugins = get_plugins();
     $i = 0;
 
     foreach ($plugins as $plugin){
       $checked="";
-      if(get_option('plugin'.$i)!=null){
+      if($settings['plugin_'.$i]!=null){
         $checked = 'checked';
       }
       echo "<tr><td>";
@@ -51,7 +54,7 @@ if ( ! function_exists( 'get_plugins' ) ) {
       echo '</br>';
       echo '<div class="nsc-plugin-version-admin">' . ' ' . $plugin['Version'];
       echo '</br></td><td>';
-      echo '<input class="nsc-widefat-admin" id="plugin'.$i.'" name="plugin'.$i.'" type="checkbox" value= "'.$plugin['Name'].'" '. $checked .' />';
+      echo '<input class="nsc-widefat-admin" name="plugin_'. $i .'" type="checkbox" value= "1" '. $checked .' />';
       echo "</td></tr>";
       $i++;
     }
