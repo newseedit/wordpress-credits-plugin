@@ -2,14 +2,13 @@
 Contributors: newseedit
 Tags: NewSeed,
 Requires at least: 4.6
+Stable tag:4.6
 Tested up to: 4.6.1
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-This plugin picks up all your installed plugins in the list.
-You can then choose which plugin you want to show your gratitude to by ticking the field that\'s in and then it will appear in your sidebar widget.
-If you want you can have it on a page.
-By entering this short code [newseed] on the page you want the plugin to be displayed in.
+This plugin picks up all your installed plugins in a list.
+You can then choose which plugin you want to show your gratitude to.
 
 == Description ==
 This plugin is created for all who want to give credit to those developers who have created your favorite plugins.
