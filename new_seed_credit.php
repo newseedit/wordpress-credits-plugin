@@ -165,4 +165,3 @@ add_shortcode( 'newseed', 'displayPluginContent' );
   }
   add_action( 'widgets_init', 'wpb_load_widget' );
   /* Stop Adding Functions Below this Line */
- ?>

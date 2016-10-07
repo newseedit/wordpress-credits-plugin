@@ -1,4 +1,7 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
     if(isset($_POST['nsc_hidden'])) {
       $plugins = get_plugins();
       $i = 0;
@@ -18,4 +21,4 @@
     } else {
         //Normal page display
     }
-?>
+

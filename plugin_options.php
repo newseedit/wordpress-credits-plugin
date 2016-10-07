@@ -1,5 +1,7 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 function nsc_create_page() {
 
   if ( !current_user_can( 'manage_options' ) ) {
