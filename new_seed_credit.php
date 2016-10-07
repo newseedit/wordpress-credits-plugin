@@ -45,7 +45,6 @@ add_shortcode( 'newseed', 'displayPluginContent' );
         echo '</br>';
         echo '<div class="nsc-plugin-desc">' . ' ' . $plugin['Description'] . '</div>';
         echo '<div class="nsc-plugin-uri">' . ' ' .$plugin['PluginURI'] . '</div>';
-        echo '<div class="nsc-plugin-version">' . ' ' . $plugin['Version'] . '</div>';
         echo '</br>';
       }
       $i++;
@@ -96,8 +95,6 @@ add_shortcode( 'newseed', 'displayPluginContent' );
         echo $plugin['Description'];
         echo '</br>';
         echo ' <a href="' .$plugin['PluginURI'] . '" rel="nofollow">'.$plugin['PluginURI'].'</a>';
-        echo '</br>';
-        echo $plugin['Version'];
         echo '</br>' . '</br>';
       }
       $i++;
@@ -119,7 +116,6 @@ add_shortcode( 'newseed', 'displayPluginContent' );
       echo '</br>';
       echo '<div id="nsc-url">URL:</b>' . ' ' . $plugin['PluginURI'];
       echo '</br>';
-      echo '<b>Version</b>' . ' ' . $plugin['Version'];
       echo '</br></td><td>';
       echo '<input class="widefat" id="'. $this->get_field_id( 'plugin'.$i ).'" name="'. $this->get_field_name( 'plugin'.$i ).'" type="checkbox" value= "' . $this->get_field_name( 'plugin'.$i ) .'" '. $checked .' />';
       echo "</td></tr>";
