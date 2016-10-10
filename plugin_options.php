@@ -46,7 +46,9 @@ if ( ! function_exists( 'get_plugins' ) ) {
       require_once ABSPATH . 'wp-admin/includes/plugin.php';
     }
     $i = 0;
-
+    echo '<input type="button" onclick="changeBoxes(1)" value="select all">
+<input type="button" onclick="changeBoxes(-1)" value="invert selection">
+<input type="button" onclick="changeBoxes(0)" value="select none">';
     foreach ($plugins as $plugin){
       $checked="";
       if($settings['plugin_'.$i]!=null){
