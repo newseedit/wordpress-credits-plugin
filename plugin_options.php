@@ -12,10 +12,15 @@ function nsc_create_page() {
   $settings = get_option('nsc_settings');
 
   /* if it is a post to this page */
-  if ( isset( $_POST['nsc_hidden'] ) ) {
+  if ( isset( $_POST['nsc_nonce'] ) ) {
     $i = 0;
     foreach ($plugins as $plugin){
       if ( isset( $_POST['plugin_'.$i] ) ) {
+        if(wp_verify_nonce($_POST['nsc_nonce'], 'nsc-hidden')){
+          echo 'Nonce verified succesfully'; exit;
+        } else {
+            echo 'Nonce not verified'; exit;
+        }
         $settings['plugin_'.$i] = true;
       }
       else {
@@ -61,7 +66,7 @@ if ( ! function_exists( 'get_plugins' ) ) {
 echo "</table>";
 ?>
     <p class="nsc-submit">
-    <input type="hidden" name="nsc_hidden" value="Y">
+    <input type="hidden" name="nsc_nonce" value="<?php echo wp_create_nonce('nsc-hidden'); ?>"/>
       <input type="submit" class="nsc-save-btn" name="Submit" value="<?php _e('Save Options', '' ) ?>" />
     </p>
     <a class="nsc-powered-by" target="_blank" href="http://newseed.se"/>powered by New Seed</a>
