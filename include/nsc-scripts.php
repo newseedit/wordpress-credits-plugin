@@ -1,4 +1,4 @@
 <?php
 // Add Scripts
-  wp_enqueue_style('style',plugins_url() . '/new_seed/css/style.css');
-  wp_enqueue_script('script',plugins_url() . '/new_seed/include/nsc_checkboxes.js');
+  wp_enqueue_style('style', plugins_url('../css/style.css', __FILE__) );
+  wp_enqueue_script('script', plugins_url('nsc_checkboxes.js', __FILE__) );

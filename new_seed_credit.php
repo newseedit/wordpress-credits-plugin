@@ -26,29 +26,33 @@ include_once 'nsc_install.php';
 
 add_action('admin_menu', 'nsc_admin_meny');
 function nsc_admin_meny() {
-    include_once 'plugin_options.php';
-
+  include_once 'plugin_options.php';
   add_options_page ('New Seed Credit Settings','New Seed Credit', 'manage_options','new-seed-credit', 'nsc_create_page');
 }
 
-add_shortcode( 'newseed', 'displayPluginContent' );
-   function displayPluginContent() {
+add_shortcode( 'ncs_show_credits', 'ncs_displayPluginContent' );
+   function ncs_displayPluginContent() {
 
     if ( ! function_exists( 'get_plugins' ) ) {
       require_once ABSPATH . 'wp-admin/includes/plugin.php';
     }
     $plugins = get_plugins();
+    $settings = get_option('nsc_settings');
     $i = 0;
+    ob_start();
     foreach ($plugins as $plugin){
-      if(get_option('plugin'.$i) != null){
+      if($settings['plugin_'.$i]!=null){
         echo '<div class="nsc-plugin-name">' . ' ' . $plugin['Name'] . '</div>';
         echo '</br>';
         echo '<div class="nsc-plugin-desc">' . ' ' . $plugin['Description'] . '</div>';
-        echo '<div class="nsc-plugin-uri">' . ' ' .$plugin['PluginURI'] . '</div>';
+        echo '<div class="nsc-plugin-uri"><a href="' .$plugin['PluginURI'] . '" rel="nofollow">'.$plugin['PluginURI'].'</a></div>';
         echo '</br>';
       }
       $i++;
     }
+    $html = ob_get_contents();
+    ob_end_clean();
+    return $html;
   }
 
   if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly

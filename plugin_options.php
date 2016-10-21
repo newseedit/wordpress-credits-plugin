@@ -16,10 +16,9 @@ function nsc_create_page() {
     $i = 0;
     foreach ($plugins as $plugin){
       if ( isset( $_POST['plugin_'.$i] ) ) {
-        if(wp_verify_nonce($_POST['nsc_nonce'], 'nsc-hidden')){
-          echo 'Nonce verified succesfully'; exit;
-        } else {
-            echo 'Nonce not verified'; exit;
+        if(!wp_verify_nonce($_POST['nsc_nonce'], 'nsc-hidden')){
+            echo 'Nonce not valid';
+            exit;
         }
         $settings['plugin_'.$i] = true;
       }
@@ -33,9 +32,7 @@ function nsc_create_page() {
     ?>
     <div class="updated"><p><strong><?php _e('Options saved.' ); ?></strong></p></div>
     <?php
-  } else {
-      //Normal page display
-  }
+}
 
 
 echo '<form method="post" class="nsc-admin-form" action=" '. str_replace( '%7E', '~', $_SERVER['REQUEST_URI']) .'">';
